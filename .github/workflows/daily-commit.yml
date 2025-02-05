@@ -3,7 +3,7 @@ name: Daily Commit Workflow
 on:
   schedule:
     # Runs daily at 17:10 UTC (specific hours/minutes, no wildcards)
-    - cron: '53 18 * * *'
+    - cron: '26 19 * * *'
   workflow_dispatch:
 
 jobs:
