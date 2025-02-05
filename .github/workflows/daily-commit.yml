@@ -1,0 +1,30 @@
+name: Daily Commit Workflow
+
+on:
+  schedule:
+    # Runs daily at 17:10 UTC (specific hours/minutes, no wildcards)
+    - cron: '10 17 * * *'
+
+jobs:
+  commit:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Check out the repository
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Step with your email in its name
+      - name: Add commit using 23f2004752@ds.study.iitm.ac.in
+        run: |
+          # Configure Git
+          git config --global user.name "ansh"
+          git config --global user.email "23f2004752@ds.study.iitm.ac.in"
+
+          # Create a new file or update an existing one
+          echo "Daily commit on $(date)" >> daily-log.txt
+
+          # Add, commit, and push changes
+          git add daily-log.txt
+          git commit -m "Automated daily commit on $(date)"
+          git push origin main
