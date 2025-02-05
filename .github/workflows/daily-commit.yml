@@ -3,7 +3,7 @@ name: Daily Commit Workflow
 on:
   schedule:
     # Runs daily at 17:10 UTC (specific hours/minutes, no wildcards)
-    - cron: '31 18 * * *'
+    - cron: '38 18 * * *'
   workflow_dispatch:
 
 jobs:
@@ -19,7 +19,7 @@ jobs:
       - name: Add commit using 23f2004752@ds.study.iitm.ac.in
         run: |
           # Configure Git
-          git config --global user.name "ansh"
+          git config --global user.name "Ansh"
           git config --global user.email "23f2004752@ds.study.iitm.ac.in"
 
           # Create a new file or update an existing one
@@ -29,3 +29,13 @@ jobs:
           git add daily-log.txt
           git commit -m "Automated daily commit on $(date)"
           git push origin main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # Debugging step to print the current directory and files
+      - name: List files in the repository
+        run: ls -la
+
+      # Debugging step to print the Git status
+      - name: Git status
+        run: git status
